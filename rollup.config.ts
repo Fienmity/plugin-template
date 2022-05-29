@@ -1,5 +1,5 @@
 import { defineConfig, Plugin } from "rollup";
-import esbuild from "rollup-plugin-esbuild";
+import { swc } from "rollup-plugin-swc3";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
@@ -23,7 +23,19 @@ export default defineConfig({
     nodeResolve(),
     commonjs(),
     json(),
-    esbuild({ minify: true, target: "ES2019" }),
+    swc({
+      jsc: {
+        minify: {
+          compress: true
+        },
+        parser: {
+          "syntax": "typescript",
+          "tsx": true
+        },
+        target: 'es2022',
+        baseUrl: './src/'
+      }
+    }),
     copyManifest(),
   ]
 });
