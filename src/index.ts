@@ -1,4 +1,4 @@
-import { Plugin, registerPlugin } from "enmity-api/plugins";
+import { Plugin, registerPlugin } from "enmity/managers/plugins";
 import Manifest from "./manifest.json";
 
 const ExamplePlugin: Plugin = {
